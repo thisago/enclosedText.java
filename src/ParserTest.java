@@ -34,6 +34,9 @@ class ParserTest {
 	void SameEnclosingLevels() {
 		Parser parser = new Parser('*', '*', 1);
 		String[] res = parser.get("In markdown, we can write **bold texts**, but it's so hard... **Don't try at home!**");
+		for (String item : res) {
+			System.out.println("\t" + item);			
+		}
 		Assert.assertEquals(2, res.length);
 		Assert.assertEquals(new String[]{"bold texts", "Don't try at home!"}, res);
 	}

@@ -38,18 +38,25 @@ public class Parser {
 				curr += ch;
 			}			
 		} else {
-			for(int i = 0, n = text.length() ; i < n ; i++) { 
+			boolean opened = false;
+			for(int i = 0, n = text.length(); i < n ; i++) { 
 				char ch = text.charAt(i);
 				if (ch == this.open) {
-					currLevel = currLevel == 1 ? 0 : 1;
-					if (currLevel == 0) {
+					if (currLevel < this.level + 1)
+						currLevel++;
+					else
+						currLevel--;
+					if (curr.length() > 0 && currLevel == this.level) {
 						result.add(curr);
 						curr = "";
 					}
 					continue;
+				} else {
+					if (currLevel < this.level + 1)
+						currLevel = 0;
+					if (currLevel == this.level + 1)
+						curr += ch;
 				}
-				if (currLevel > 0)
-					curr += ch;
 			}
 		}
 		String[] finalResult = new String[result.size()];
