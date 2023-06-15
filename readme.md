@@ -37,6 +37,9 @@ Assert.assertEquals(2, res.length);
 Assert.assertEquals(new String[]{"bold texts", "Don't try at home!"}, res);
 ```
 
+## TODO
+
+- [ ] Turn this to a lib
 
 ## License
 
