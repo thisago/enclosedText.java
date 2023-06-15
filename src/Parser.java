@@ -42,11 +42,13 @@ public class Parser {
 			for(int i = 0, n = text.length(); i < n ; i++) { 
 				char ch = text.charAt(i);
 				if (ch == this.open) {
-					if (currLevel < this.level + 1)
+					if (currLevel == 0) opened = false;
+					if (currLevel < this.level + 1 && !opened)
 						currLevel++;
 					else
 						currLevel--;
 					if (curr.length() > 0 && currLevel == this.level) {
+						opened = true;
 						result.add(curr);
 						curr = "";
 					}
